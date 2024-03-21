@@ -1,5 +1,9 @@
 # Apple Stock Time Series Analysis
 
+## Team Shibo
+- [**Reezan Shrestha**](https://github.com/Shinigami-7)  
+- **Jyotsan Hamal** (myself)
+
 ## Overview
 
 The "Apple Stock Time Series Analysis" project aims to conduct a comprehensive analysis of historical stock data for Apple Inc. Using time series analysis techniques, the project seeks to gain insights into the trends, patterns, and potential future performance of Apple's stock.
@@ -13,7 +17,7 @@ The "Apple Stock Time Series Analysis" project aims to conduct a comprehensive a
 
 ## Key Components
 
-1. **Data Collection**: Obtain historical stock price data for Apple Inc. from reliable sources such as financial APIs or datasets.
+1. **Data Collection**: Obtain historical stock price data for Apple Inc. from reliable sources such as financial APIs or datasets.In our case we used data from kaggle.
    
 2. **Data Preprocessing**: Clean the raw data, handle missing values, and format the data into a suitable format for analysis.
 
@@ -27,6 +31,8 @@ The "Apple Stock Time Series Analysis" project aims to conduct a comprehensive a
 
 7. **Documentation and Reporting**: Document the analysis process, methodologies, and findings in a comprehensive report or README.md file to provide clear insights and conclusions.
 
+## Project Context
+This project is part of our data science workshop facilitated by [**Kanchan Bhatt**](https://www.linkedin.com/in/itskanchanthings/), Data Scientist at [Alphateds Company](https://alphateds.com/). 
 ## Technologies Used
 
 - Python: Programming language for data analysis, modeling, and visualization.
