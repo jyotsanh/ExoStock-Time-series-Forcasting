@@ -1,7 +1,8 @@
 # Apple Stock Time Series Analysis
 
 ## Team Shibo
-- [**Reezan Shrestha**](https://github.com/Shinigami-7)  
+
+- [**Reezan Shrestha**](https://github.com/Shinigami-7)
 - **Jyotsan Hamal** (myself)
 
 ## Overview
@@ -18,21 +19,27 @@ The "Apple Stock Time Series Analysis" project aims to conduct a comprehensive a
 ## Key Components
 
 1. **Data Collection**: Obtain historical stock price data for Apple Inc. from reliable sources such as financial APIs or datasets.In our case we used data from kaggle.
-   
 2. **Data Preprocessing**: Clean the raw data, handle missing values, and format the data into a suitable format for analysis.
-
-3. **Exploratory Data Analysis (EDA)**: Explore the data through visualization and statistical analysis to identify trends, seasonality, and any anomalies.
-
+3. **Exploratory Data Analysis (EDA)**: Explore the data through visualization and statistical analysis to identify trends, seasonality, and any anomalies.Facebook prophet will be used for Analysis
 4. **Time Series Modeling**: Apply various time series modeling techniques such as ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA), or machine learning models like LSTM (Long Short-Term Memory) to forecast future stock prices.
 
+   - **Traditional Time Series Forecasting Techniques:**
+     - ARIMA
+     - Prophet
+     - Neural Prophet
+     - Vector Autoregression
+   - **Machine Learning:**
+     - Neural Network Reressor
+     - Catboost Regressor
+     - Any regressor
 5. **Model Evaluation**: Assess the performance of the forecasting models using metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). Compare the performance of different models to determine the most accurate one.
-
 6. **Visualization**: Visualize the historical stock data, forecasted values, and model performance metrics using plots and graphs to communicate findings effectively.
-
 7. **Documentation and Reporting**: Document the analysis process, methodologies, and findings in a comprehensive report or README.md file to provide clear insights and conclusions.
 
 ## Project Context
-This project is part of our data science workshop facilitated by [**Kanchan Bhatt**](https://www.linkedin.com/in/itskanchanthings/), Data Scientist at [Alphateds Company](https://alphateds.com/). 
+
+This project is part of our data science workshop facilitated by [**Kanchan Bhatt**](https://www.linkedin.com/in/itskanchanthings/), Data Scientist at [Alphateds Company](https://alphateds.com/).
+
 ## Technologies Used
 
 - Python: Programming language for data analysis, modeling, and visualization.
