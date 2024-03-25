@@ -56,7 +56,7 @@ def page_source_to_dataframe(page_html):
 
 
 
-driver.get("https://www.sharesansar.com/company/gbime")
+driver.get("https://www.sharesansar.com/company/hidcl")
 
 price_history_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]"
 button = driver.find_element(By.XPATH,price_history_xpath)
