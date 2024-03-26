@@ -10,7 +10,7 @@ options = webdriver.FirefoxOptions()  # -> This allow to access the firefox web 
 options.add_argument("-headless")   # -> This run browser in background
 
 
-driver = webdriver.Firefox(options=options) # ->it provide  argument to driver whic run browser in backgroung
+driver = webdriver.Firefox(options=options) # ->it provide  argument to driver which run browser in backgroung
 #  -> Below function take 'dictionary' argument and returns pandas dataframe
 def dictionary_to_dataframe(dictionary:dict):
     
@@ -64,11 +64,12 @@ price_history_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2
 button = driver.find_element(By.XPATH,price_history_xpath)
 # -> driver click button
 button.click()
-
+# -> Locate the select dropdown option using XPath
 fifty_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[1]/label/select/option[3]"
 button = driver.find_element(By.XPATH,fifty_xpath)
 button.click()
 time.sleep(1)
+# -> Loop 10 times to click on next button/link
 for _ in range(10):
     next_path = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[5]/a[2]"
     button = driver.find_element(By.XPATH,next_path)
