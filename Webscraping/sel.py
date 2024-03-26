@@ -1,25 +1,26 @@
 from bs4 import BeautifulSoup      # -> beautiful soup help to webscrap html page
 from selenium import webdriver     # -> webdriver helps to automate webscrap
-import time
+import time                        # -> time library helps to skip
 from selenium.webdriver.common.by import By
 import pandas as pd
 
 
-# This 
-options = webdriver.FirefoxOptions()
-options.add_argument("-headless")
+options = webdriver.FirefoxOptions()  # -> This allow to access the firefox web browser
+
+options.add_argument("-headless")   # -> This run browser in background
 
 
-driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox(options=options) # ->it provide  argument to driver whic run browser in backgroung
+#  -> Below function take 'dictionary' argument and returns pandas dataframe
 def dictionary_to_dataframe(dictionary:dict):
     
     return pd.DataFrame(dictionary)
-
+#  -> Below function takes 'page html' as argument and returns pandas dataframe
 def page_source_to_dataframe(page_html):
     soup = BeautifulSoup(page_html, 'html.parser')
     one = soup.find_all('div',class_ = 'col-md-10')
     tr = one[1].find_all('tr')
-    # Create a list to save data for each column
+    # -> Create a list to save data for each column
     index = []
     date = []
     Open = []
@@ -55,12 +56,15 @@ def page_source_to_dataframe(page_html):
     return df
 
 
-
+#  -> accesing nabil stock from sharesansar website
 driver.get("https://www.sharesansar.com/company/nabil")
 
+# -> 'price history' button x_path which driver uses to click
 price_history_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]"
 button = driver.find_element(By.XPATH,price_history_xpath)
+# -> driver click button
 button.click()
+
 fifty_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[1]/label/select/option[3]"
 button = driver.find_element(By.XPATH,fifty_xpath)
 button.click()
