@@ -1,11 +1,11 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
+from bs4 import BeautifulSoup      # -> beautiful soup help to webscrap html page
+from selenium import webdriver     # -> webdriver helps to automate webscrap
 import time
 from selenium.webdriver.common.by import By
 import pandas as pd
 
 
-
+# This 
 options = webdriver.FirefoxOptions()
 options.add_argument("-headless")
 
@@ -56,7 +56,7 @@ def page_source_to_dataframe(page_html):
 
 
 
-driver.get("https://www.sharesansar.com/company/hidcl")
+driver.get("https://www.sharesansar.com/company/nabil")
 
 price_history_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]"
 button = driver.find_element(By.XPATH,price_history_xpath)
@@ -64,9 +64,14 @@ button.click()
 fifty_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[1]/label/select/option[3]"
 button = driver.find_element(By.XPATH,fifty_xpath)
 button.click()
-time.sleep(2)
-# Get the HTML content of the page after clicking the button
-page_html = driver.page_source
-df = page_source_to_dataframe(page_html=page_html)
-print(df)
+time.sleep(1)
+for _ in range(10):
+    next_path = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[5]/a[2]"
+    button = driver.find_element(By.XPATH,next_path)
+    button.click()
+    time.sleep(2)
+    # Get the HTML content of the page after clicking the button
+    page_html = driver.page_source
+    df = page_source_to_dataframe(page_html=page_html)
+    print(df)
 driver.quit()
