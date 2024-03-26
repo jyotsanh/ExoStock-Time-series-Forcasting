@@ -1,25 +1,26 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
-import time
+from bs4 import BeautifulSoup      # -> beautiful soup help to webscrap html page
+from selenium import webdriver     # -> webdriver helps to automate webscrap
+import time                        # -> time library helps to skip
 from selenium.webdriver.common.by import By
 import pandas as pd
 
 
+options = webdriver.FirefoxOptions()  # -> This allow to access the firefox web browser
 
-options = webdriver.FirefoxOptions()
-options.add_argument("-headless")
+options.add_argument("-headless")   # -> This run browser in background
 
 
-driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox(options=options) # ->it provide  argument to driver which run browser in backgroung
+#  -> Below function take 'dictionary' argument and returns pandas dataframe
 def dictionary_to_dataframe(dictionary:dict):
     
     return pd.DataFrame(dictionary)
-
+#  -> Below function takes 'page html' as argument and returns pandas dataframe
 def page_source_to_dataframe(page_html):
     soup = BeautifulSoup(page_html, 'html.parser')
     one = soup.find_all('div',class_ = 'col-md-10')
     tr = one[1].find_all('tr')
-    # Create a list to save data for each column
+    # -> Create a list to save data for each column
     index = []
     date = []
     Open = []
@@ -55,18 +56,27 @@ def page_source_to_dataframe(page_html):
     return df
 
 
+#  -> accesing nabil stock from sharesansar website
+driver.get("https://www.sharesansar.com/company/nabil")
 
-driver.get("https://www.sharesansar.com/company/hidcl")
-
+# -> 'price history' button x_path which driver uses to click
 price_history_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]"
 button = driver.find_element(By.XPATH,price_history_xpath)
+# -> driver click button
 button.click()
+# -> Locate the select dropdown option using XPath
 fifty_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[1]/label/select/option[3]"
 button = driver.find_element(By.XPATH,fifty_xpath)
 button.click()
-time.sleep(2)
-# Get the HTML content of the page after clicking the button
-page_html = driver.page_source
-df = page_source_to_dataframe(page_html=page_html)
-print(df)
+time.sleep(1)
+# -> Loop 10 times to click on next button/link
+for _ in range(10):
+    next_path = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[5]/a[2]"
+    button = driver.find_element(By.XPATH,next_path)
+    button.click()
+    time.sleep(2)
+    # Get the HTML content of the page after clicking the button
+    page_html = driver.page_source
+    df = page_source_to_dataframe(page_html=page_html)
+    print(df)
 driver.quit()
