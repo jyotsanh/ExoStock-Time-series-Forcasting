@@ -1,4 +1,4 @@
-# Apple Stock Time Series Analysis
+# Nabil Stock Time Series Forecasting
 
 ## Team Shibo
 
@@ -7,18 +7,18 @@
 
 ## Overview
 
-The "Apple Stock Time Series Analysis" project aims to conduct a comprehensive analysis of historical stock data for Apple Inc. Using time series analysis techniques, the project seeks to gain insights into the trends, patterns, and potential future performance of Apple's stock.
+The "Nabil Stock Time Series Forecasting" project aims to conduct a comprehensive analysis of historical stock data for Nabil Bank. Using time series analysis techniques, the project seeks to gain insights into the trends, patterns, and potential future performance of Nabil's stock.
 
 ## Project Goals
 
-- Analyze historical stock data for Apple Inc. to understand past trends and patterns.
+- Analyze historical stock data for Nabil Inc. to understand past trends and patterns.
 - Perform exploratory data analysis (EDA) to uncover key insights and characteristics of the stock data.
-- Apply time series forecasting techniques to predict future stock prices for Apple.
+- Apply time series forecasting techniques to predict future stock prices for Nabil.
 - Evaluate the performance of the forecasting models and assess their accuracy and reliability.
 
 ## Key Components
 
-1. **Data Collection**: Obtain historical stock price data for Apple Inc. from reliable sources such as financial APIs or datasets.In our case we used data from kaggle.
+1. **Data Collection**: Obtain historical stock price data for Nabil Bank. from reliable sources such as financial APIs or datasets.In our case we used data from kaggle.
 2. **Data Preprocessing**: Clean the raw data, handle missing values, and format the data into a suitable format for analysis.
 3. **Exploratory Data Analysis (EDA)**: Explore the data through visualization and statistical analysis to identify trends, seasonality, and any anomalies.Facebook prophet will be used for Analysis
 4. **Time Series Modeling**: Apply various time series modeling techniques such as ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA), or machine learning models like LSTM (Long Short-Term Memory) to forecast future stock prices.
@@ -52,4 +52,4 @@ This project is part of our data science workshop facilitated by [**Kanchan Bhat
 
 ## Conclusion
 
-The "Apple Stock Time Series Analysis" project aims to leverage advanced analytics techniques to gain valuable insights into the historical and future performance of Apple's stock. By applying time series modeling and forecasting methods, the project seeks to assist investors, analysts, and stakeholders in making informed decisions regarding Apple's stock investment.
+The "Nabil Stock Time Series Forecasting" project aims to leverage advanced analytics techniques to gain valuable insights into the historical and future performance of Nabil's stock. By applying time series modeling and forecasting methods, the project seeks to assist investors, analysts, and stakeholders in making informed decisions regarding Nabil's stock investment.
