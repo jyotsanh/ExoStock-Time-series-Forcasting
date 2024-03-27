@@ -69,14 +69,29 @@ fifty_xpath = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/di
 button = driver.find_element(By.XPATH,fifty_xpath)
 button.click()
 time.sleep(1)
+
+# Initialize an empty list to store DataFrames
+dfs = []
+
 # -> Loop 10 times to click on next button/link
-for _ in range(10):
+for _ in range(25):
+    page_html = driver.page_source
+    df = page_source_to_dataframe(page_html=page_html)
     next_path = "/html/body/div[2]/div/section[2]/div[3]/div/div/div/div[2]/div/div[1]/div[2]/div/div[8]/div/div/div[5]/a[2]"
     button = driver.find_element(By.XPATH,next_path)
     button.click()
     time.sleep(2)
     # Get the HTML content of the page after clicking the button
-    page_html = driver.page_source
-    df = page_source_to_dataframe(page_html=page_html)
-    print(df)
+    
+    print(_)
+    # Append DataFrame to the list
+    dfs.append(df)
+
+# Concatenate all DataFrames in the list
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Save concatenated DataFrame to a single CSV file without index
+final_df.to_csv('Nabil_Stock.csv', index=False)
+print("Concatenated DataFrame saved to final_data.csv")
+
 driver.quit()
