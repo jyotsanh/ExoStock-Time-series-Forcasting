@@ -41,6 +41,8 @@
     <div class="describe">
         <h1>Data From 2018 - 2024</h1>
         {{ df_describe_html | safe }}
+        <h1>DataFrame Plot</h1>
+        <img src="data:image/png;base64,{{ plot_data }}" alt="DataFrame Plot">
     </div>
 
     <section id="contact">

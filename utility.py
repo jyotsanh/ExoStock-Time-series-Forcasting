@@ -23,12 +23,17 @@ import math
 from sklearn.linear_model import ElasticNet
 import os
 
-df = pd.read_csv("./Webscraping/Nabil_Stock.csv")
+df = pd.read_csv("./notebooks/Nabil_Stock.csv")
 
 def dataframe_describe():
-    df_describe_html = df.describe().to_html()
-    return df_describe_html
+    df['Open'] = df['Open'].str.replace(',', '').astype(float)
+    df['High'] = df['High'].str.replace(',', '').astype(float)
+    df['Low'] = df['Low'].str.replace(',', '').astype(float)
+    df['Ltp'] = df['Ltp'].str.replace(',', '').astype(float)
 
+    df_describe_html = df.drop(columns=['Index']).describe().to_html()
+    return df_describe_html
+#-----------------checked--------------------------------------
 # convert an array of values into a dataset matrix
 def create_dataset(dataset, look_back=1):
     dataX, dataY = [], []
@@ -37,6 +42,41 @@ def create_dataset(dataset, look_back=1):
         dataX.append(a)
         dataY.append(dataset[i + look_back, 0])
     return numpy.array(dataX), numpy.array(dataY)
+
+def create_preprocessed_Dataset(df):
+    df['Open'] = df['Open'].str.replace(',', '').astype(float)
+    df['High'] = df['High'].str.replace(',', '').astype(float)
+    df['Low'] = df['Low'].str.replace(',', '').astype(float)
+    df['Ltp'] = df['Ltp'].str.replace(',', '').astype(float)
+    # Drop columns except 'date' and 'open'
+    df.drop(columns=df.columns.difference(['Date', 'Open']), inplace=True)
+
+    df = df['Open']
+    # only use Open column
+    dataset = df.values
+    
+    dataset = dataset.reshape(-1, 1)
+    
+    dataset = dataset.astype('float32')
+    
+    # split into train and test sets
+    train_size = len(dataset) - 2
+    train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
+
+    # reshape into X=t and Y=t+1
+    look_back = 1
+    trainX, trainY = create_dataset(train, look_back)
+    testX, testY = create_dataset(test, look_back)
+
+    # reshape input to be [samples, time steps, features]
+    # trainX = numpy.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
+    # testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
+    print(trainX.shape, trainY.shape, testX.shape, testY.shape)
+    return trainX, trainY, testX, testY
+
+
+print(df.columns)
+#-----------------checked--------------------------------------
 
 # Function to generate plot and return base64 encoded image
 def generate_plot():
