@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{stock_name}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{stock_name}} Stock Forecasting</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Team</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>{{ml_algorithm}} on {{stock_name}} data </h1>
+    <!-- for plotting the data -->
+    <div class="describe">
+        <h1>Data Description</h1>
+        {{ described_data | safe }}
+        
+        <h2>{{stock_name}} Stock Prices Plot</h2>
+        <img src="data:image/png;base64,{{ plot_base64 }}" alt="Stock Prices Plot">
+    </div>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any inquiries or would like to collaborate, please feel free to reach out to us.</p>
+        <address>
+            Email: info@nabilbankforecasting.com<br>
+            Phone: +977 98752217890
+        </address>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Nabil Bank Stock Forecasting. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

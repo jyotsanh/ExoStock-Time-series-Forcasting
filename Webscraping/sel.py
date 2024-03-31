@@ -33,7 +33,7 @@ def list_stock_files(folder_path):
         print("List of stock files:")
         for file in csv_files:
             stock_names.append(file.replace(".csv",""))
-            return stock_name
+        return stock_names
     else:
         print("No CSV files found in the folder.")
 

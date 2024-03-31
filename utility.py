@@ -23,17 +23,69 @@ import math
 from sklearn.linear_model import ElasticNet
 import os
 
-df = pd.read_csv("./notebooks/Nabil_Stock.csv")
+df = pd.read_csv("./stock_datas/bnl.csv")
 
-def dataframe_describe():
-    df['Open'] = df['Open'].str.replace(',', '').astype(float)
-    df['High'] = df['High'].str.replace(',', '').astype(float)
-    df['Low'] = df['Low'].str.replace(',', '').astype(float)
-    df['Ltp'] = df['Ltp'].str.replace(',', '').astype(float)
 
-    df_describe_html = df.drop(columns=['Index']).describe().to_html()
+#-----------------checked-below--------------------------------------
+def dataframe_describe(stock_name):
+    df = pd.read_csv(f"./stock_datas/{stock_name}.csv")
+    df_describe_html = df.describe().to_html()
     return df_describe_html
-#-----------------checked--------------------------------------
+
+# Generate plot dynamically
+
+def plot_function(stock_name):
+    described_data = pd.read_csv(f"./stock_datas/{stock_name}.csv")
+    
+    # Convert 'date' column to datetime format
+    described_data['date'] = pd.to_datetime(described_data['date'])
+    
+    # Resample data on a monthly basis
+    described_data.set_index('date', inplace=True)
+    monthly_data = described_data.resample('M').mean()  # Resample to monthly and calculate mean
+    
+    # Generate plot
+    plt.figure(figsize=(12, 6))
+    plt.plot(monthly_data.index, monthly_data['ltp'])
+    plt.xlabel('Date')
+    plt.ylabel('LTP')
+    plt.title('Stock Prices (Monthly)')
+    
+    # Convert plot to base64 string
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    plt.close()
+    
+    return plot_base64
+
+# this function returns all stocks name in stocks_data folder
+def list_stock_files(folder_path):
+    # Check if the folder path exists
+
+    if not os.path.exists(folder_path):
+        print(f"The folder '{folder_path}' does not exist.")
+        return
+    
+    # List all files in the folder
+    files = os.listdir(folder_path)
+    
+    # Filter out only CSV files
+    csv_files = [file for file in files if file.endswith('.csv')]
+    
+    # Print the list of stock files
+    if csv_files:
+        stock_names = []
+        print("List of stock files:")
+        for file in csv_files:
+            stock_names.append(file.replace(".csv",""))
+        return stock_names
+    else:
+        print("No CSV files found in the folder.")
+
+
+
 # convert an array of values into a dataset matrix
 def create_dataset(dataset, look_back=1):
     dataX, dataY = [], []
@@ -75,23 +127,8 @@ def create_preprocessed_Dataset(df):
     return trainX, trainY, testX, testY
 
 
-print(df.columns)
-#-----------------checked--------------------------------------
 
-# Function to generate plot and return base64 encoded image
-def generate_plot():
-    plt.figure(figsize=(8, 6))
-    df.plot()
-    plt.title('DataFrame Plot')
-    plt.xlabel('X-Axis')
-    plt.ylabel('Y-Axis')
-    plt.grid(True)
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    plot_data = base64.b64encode(buffer.getvalue()).decode('utf-8')
-    plt.close()
-    return plot_data
+#-----------------checked-above--------------------------------------
 
 def getData(df):
     # Create the lists / X and Y data sets
@@ -192,3 +229,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+    dataframe_describe()
+    list_stock_files()
+    plot_function()
