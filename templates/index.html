@@ -1,15 +1,85 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoStock Forecasting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
-    <title>Hello, World!</title>
-</head>
 <body>
-    <h1>Nabik Stock Data Forecasting</h1>
-    <p>This is a simple Flask app using render_template.</p>
+    <header>
+        <h1>ExoStock Forecasting</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Team</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to ExoStock Forecasting</h2>
+        <p>Here you can find forecasts and analysis for any stock performance.</p>
+    </section>
+
+    
+    <form action="/forecasting" method="POST">
+        <div class="stock_name">
+            <select class="form-select" aria-label="Default select example" name="selected_stock" required>
+                <option selected>Choose Stock</option>
+                {% for i in range(0, stock_length) %}
+                    <option value="{{ stocks[i] }}">{{ stocks[i] }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+        <div class="ml_algorithm">
+            <label for="selected_algorithm">Select ML Algorithm:</label>
+            <select class="form-select" id="selected_algorithm" name="selected_algorithm" required>
+                <option selected>Choose Algorithm</option>
+                <option value="Linear Regression">Linear Regression</option>
+                <option value="Random Forest">Random Forest</option>
+                <option value="Decision Tree">Decision Tree</option>
+                <!-- Add more options for other ML algorithms if needed -->
+            </select>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    
+    
+    
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any inquiries or would like to collaborate, please feel free to reach out to us.</p>
+        <address>
+            Email: exopy@gmail.com<br>
+            Phone: +977 98752217890
+        </address>
+    </section>
+
+    <footer>
+        <p>&copy; ExoStock Forecasting. All rights reserved.</p>
+    </footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='css/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static',filename='js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static',filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+
 </html>
