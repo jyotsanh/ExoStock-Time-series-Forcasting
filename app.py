@@ -5,7 +5,7 @@ from flask import request
 import matplotlib.pyplot as plt
 from utility import dataframe_describe,list_stock_files,plot_function
 app = Flask(__name__)
-stock_folder_path = "./stock_datas"
+stock_folder_path = "./STOCKS"
 
 
 
@@ -21,17 +21,18 @@ def landing_page():
 
 @app.route('/forecasting', methods=['POST'])
 def forecasting():
-    selected_stock = request.form.get('selected_stock')
-    ml_algorithm = request.form.get('selected_algorithm')
-    described_data = dataframe_describe(selected_stock)
-    plot_base64 = plot_function(selected_stock)
-    # Call your forecasting function with the selected stock
-    # You can pass the selected stock as an argument to your forecasting function here
-    # Example: forecast_result = your_forecasting_function(selected_stock)
+    selected_stock = request.form.get('selected_stock') #->user selected stock
+    ml_algorithm = request.form.get('selected_algorithm') #->ml algorithm selected by use
+    described_data = dataframe_describe(selected_stock)#->data.describe()
+    columns = ['open','high','low']#->column for visualization
+    plot_list = []
+    for col in columns:#->iterate overe each columns
+        
+        plot_list.append(plot_function(selected_stock,col,(13,5)))# appending towards the list of each visulization img
     return render_template("stock_info.html",
                            stock_name = selected_stock.upper(),
                            described_data=described_data,
-                           plot_base64=plot_base64,
+                           plot_base64=plot_list,
                            ml_algorithm=ml_algorithm
                            )
 

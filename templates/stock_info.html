@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{stock_name}}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stock_info.css') }}">
 </head>
 <body>
     <header>
@@ -25,7 +25,9 @@
         {{ described_data | safe }}
         
         <h2>{{stock_name}} Stock Prices Plot</h2>
-        <img src="data:image/png;base64,{{ plot_base64 }}" alt="Stock Prices Plot">
+        {% for i in range(0, 3) %}
+        <img src="data:image/png;base64,{{ plot_base64[i] }}" alt="Stock Prices Plot">
+        {% endfor %}
     </div>
 
     <section id="contact">

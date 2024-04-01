@@ -23,7 +23,7 @@ import math
 from sklearn.linear_model import ElasticNet
 import os
 
-df = pd.read_csv("./stock_datas/bnl.csv")
+df = pd.read_csv("./STOCKS/bnl.csv")
 
 #candle stick patter
 def candle_stick_chart():
@@ -31,29 +31,26 @@ def candle_stick_chart():
 
 #-----------------checked-below--------------------------------------
 def dataframe_describe(stock_name):
-    df = pd.read_csv(f"./stock_datas/{stock_name}.csv")
+    df = pd.read_csv(f"./STOCKS/{stock_name}.csv")
     df_describe_html = df.describe().to_html()
     return df_describe_html
 
 # Generate plot dynamically
 
-def plot_function(stock_name):
-    described_data = pd.read_csv(f"./stock_datas/{stock_name}.csv")
+def plot_function(stock_name,column_name,fig=(15,6)):
+    described_data = pd.read_csv(f"./STOCKS/{stock_name}.csv")
     
     # Convert 'date' column to datetime format
     described_data['date'] = pd.to_datetime(described_data['date'])
-    
-    # Resample data on a monthly basis
+    # Set 'date' column as index
     described_data.set_index('date', inplace=True)
-    monthly_data = described_data.resample('M').mean()  # Resample to monthly and calculate mean
     
     # Generate plot
-    plt.figure(figsize=(12, 6))
-    plt.plot(monthly_data.index, monthly_data['ltp'])
-    plt.xlabel('Date')
-    plt.ylabel('LTP')
-    plt.title('Stock Prices (Monthly)')
-    
+    plt.figure(figsize=fig)
+    described_data[column_name].plot()
+    plt.xlabel('years')
+    plt.ylabel(f'{column_name}')
+    plt.title(f"{column_name} data for {stock_name} data")    
     # Convert plot to base64 string
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
@@ -64,7 +61,7 @@ def plot_function(stock_name):
     return plot_base64
 
 # this function returns all stocks name in stocks_data folder
-def list_stock_files(folder_path):
+def list_stock_files(folder_path="./STOCKS"):
     # Check if the folder path exists
 
     if not os.path.exists(folder_path):
@@ -235,3 +232,4 @@ if __name__ == '__main__':
     dataframe_describe()
     list_stock_files()
     plot_function()
+    LSTM_model()
