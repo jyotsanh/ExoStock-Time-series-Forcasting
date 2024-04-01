@@ -25,6 +25,9 @@ import os
 
 df = pd.read_csv("./stock_datas/bnl.csv")
 
+#candle stick patter
+def candle_stick_chart():
+    return None
 
 #-----------------checked-below--------------------------------------
 def dataframe_describe(stock_name):
