@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from flask import request
 import matplotlib.pyplot as plt
-from utility import dataframe_describe,list_stock_files,plot_function
+from utility import dataframe_describe,list_stock_files,plot_function,train_model
 app = Flask(__name__)
 stock_folder_path = "./STOCKS"
 
@@ -23,7 +23,9 @@ def landing_page():
 def forecasting():
     selected_stock = request.form.get('selected_stock') #->user selected stock
     ml_algorithm = request.form.get('selected_algorithm') #->ml algorithm selected by use
+    
     described_data = dataframe_describe(selected_stock)#->data.describe()
+    rmse,plotted = train_model(selected_stock,ml_algorithm)
     columns = ['open','high','low']#->column for visualization
     plot_list = []
     for col in columns:#->iterate overe each columns
@@ -33,7 +35,9 @@ def forecasting():
                            stock_name = selected_stock.upper(),
                            described_data=described_data,
                            plot_base64=plot_list,
-                           ml_algorithm=ml_algorithm
+                           ml_algorithm=ml_algorithm,
+                           predict_plot=plotted,
+                           rmse_a=rmse
                            )
 
 @app.route('/about',methods=['GET'])

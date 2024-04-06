@@ -30,6 +30,14 @@
         {% endfor %}
     </div>
 
+    <div>
+        <h1>
+            RMSE : {{rmse_a}}
+        </h1>
+        <img src="data:image/png;base64,{{ predict_plot }}" alt="Stock Prices Plot">
+    </div>
+    
+
     <section id="contact">
         <h2>Contact Us</h2>
         <p>If you have any inquiries or would like to collaborate, please feel free to reach out to us.</p>

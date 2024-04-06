@@ -1,0 +1,16 @@
+Flask
+matplotlib
+numpy
+pandas
+requests
+scikit-learn
+scipy
+seaborn
+selenium
+statsmodels
+tensorboard
+tensorboard-data-server
+tensorflow
+tzdata
+websocket-client
+Werkzeug
