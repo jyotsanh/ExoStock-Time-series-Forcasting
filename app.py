@@ -41,7 +41,6 @@ def forecasting():
         
         plot_list.append(plot_function(selected_stock,col,(13,5)))# appending towards the list of each visulization img
     details = stock_details(selected_stock)
-    print(f"details : {details}")
     return render_template("stock_info.html",
                            stock_name = selected_stock.upper(),
                            described_data=described_data,
@@ -56,5 +55,9 @@ def forecasting():
 def about_team():
     return render_template("team.html")
 
+@app.route('/error',methods=['GET'])
+def error():
+    return render_template("error.html")
+
 if __name__ == '__main__':
-    app.run(debug=True,port=8080)
+    app.run(debug=True)

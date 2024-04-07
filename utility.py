@@ -36,12 +36,10 @@ def stock_details(stock_name):
         # Parse the HTML content
     
         soup = BeautifulSoup(response.text, 'html.parser')
-        print('*****************************')
         tables = soup.find_all('div',class_='tab-content') #finds the table from html
         table_data = tables[0].find_all('td') # finds the all table_data
         Symbol = table_data[1].text.strip()
         Name = table_data[3].text.strip()
-        print('---------------------------')
         Sector = table_data[5].text.strip()
         Listed_Shares = table_data[7].text.strip()
         Paid_Up = table_data[9].text.strip()
@@ -101,7 +99,7 @@ def LSTM_model(X_train, X_test, y_train, y_test, scaler):
         loss= 'mean_squared_error',
     )
 
-    model.fit(X_train,y_train,batch_size = 1,epochs=2)
+    model.fit(X_train,y_train,epochs=2,batch_size=1)
     print(model.summary())
 
     # predict the stock using test data.
