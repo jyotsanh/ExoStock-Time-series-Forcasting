@@ -18,6 +18,49 @@
             </ul>
         </nav>
     </header>
+    {% if data %}
+    <h2>Company Details</h2>
+    <table border="1">
+        <tr>
+            <th>Symbol</th>
+            <th>{{ data['Symbol'] }}</th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ data['Name'] }}</td>
+        </tr>
+        <tr>
+            <th>Sector</th>
+            <td>{{ data['Sector'] }}</td>
+        </tr>
+        <tr>
+            <th>Listed Shares</th>
+            <td>{{ data['Listed_Share'] }}</td>
+        </tr>
+        <tr>
+            <th>Paid-up</th>
+            <td>{{ data['Paid_up'] }}</td>
+        </tr>
+        <tr>
+            <th>Operation Date</th>
+            <td>{{ data['Operation_date'] }}</td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>{{ data['Phone_Number'] }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ data['Email'] }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ data['Address'] }}</td>
+        </tr>
+    </table>
+    {% else %}
+    <p>Couldn't fetch stock info.</p>
+    {% endif %}
     <h1>{{ml_algorithm}} on {{stock_name}} data </h1>
     <!-- for plotting the data -->
     <div class="describe">

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from flask import request
 import matplotlib.pyplot as plt
-from utility import dataframe_describe,list_stock_files,plot_function,train_model
+from utility import dataframe_describe,list_stock_files,plot_function,train_model,stock_details
 app = Flask(__name__)
 stock_folder_path = "./STOCKS"
 
@@ -26,18 +26,30 @@ def forecasting():
     
     described_data = dataframe_describe(selected_stock)#->data.describe()
     rmse,plotted = train_model(selected_stock,ml_algorithm)
+    if rmse==False:
+        stocks_files = list_stock_files(stock_folder_path)
+        error_message = "Error has occured while choosing the model"
+        return render_template(
+            'index.html',
+            stock_length=len(stocks_files),
+            stocks=stocks_files,
+            error_message=error_message
+        )
     columns = ['open','high','low']#->column for visualization
     plot_list = []
     for col in columns:#->iterate overe each columns
         
         plot_list.append(plot_function(selected_stock,col,(13,5)))# appending towards the list of each visulization img
+    details = stock_details(selected_stock)
+    print(f"details : {details}")
     return render_template("stock_info.html",
                            stock_name = selected_stock.upper(),
                            described_data=described_data,
                            plot_base64=plot_list,
                            ml_algorithm=ml_algorithm,
                            predict_plot=plotted,
-                           rmse_a=rmse
+                           rmse_a=rmse,
+                           data = details
                            )
 
 @app.route('/about',methods=['GET'])
