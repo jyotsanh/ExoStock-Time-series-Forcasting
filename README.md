@@ -5,6 +5,15 @@
 - [**Reezan Shrestha**](https://github.com/Shinigami-7)
 - **Jyotsan Hamal** (myself)
 
+## Project Snaps:
+- Landing Page
+![landing_page](./static/img/land.png)
+- forecasted page:
+![forecast](./static/img/forecast.png)
+![forecast2](./static/img/forecast1.png)
+- predicted
+![predict](./static/img/predict.png)
+![predict](./static/img/predict2.png)
 ## Overview
 
 The "Nabil Stock Time Series Forecasting" project aims to conduct a comprehensive analysis of historical stock data for Nabil Bank. Using time series analysis techniques, the project seeks to gain insights into the trends, patterns, and potential future performance of Nabil's stock.

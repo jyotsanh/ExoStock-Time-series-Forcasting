@@ -14,3 +14,4 @@ tensorflow
 tzdata
 websocket-client
 Werkzeug
+beautifulsoup4
