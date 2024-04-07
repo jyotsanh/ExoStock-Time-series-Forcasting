@@ -14,6 +14,44 @@
 - predicted
 ![predict](./static/img/predict.png)
 ![predict](./static/img/predict2.png)
+
+
+## How to run project:
+### 1.Clone the repo
+```
+git clone https://github.com/Jyotsan-Hamal/Nabil-Stock-Time-series-Forcasting.git
+cd Nabil-Stock-Time-series-Forcasting
+```
+### 2.Create a virtual env
+```
+# For macOS/Linux
+python3 -m venv myenv
+
+# For Windows
+python -m venv myenv
+```
+### 3.Activate a virtual env
+```
+# For macOS/Linux
+source myenv/bin/activate
+
+# For Windows
+.\myenv\Scripts\activate
+```
+### 4. Install Requirements
+```
+pip install -r requirements.txt
+```
+
+### 5.Run the code
+```
+python app.py
+```
+
+### 6.Check the browser
+```
+http://127.0.0.1:5000
+```
 ## Overview
 
 The "ExoStock Time Series Forecasting" project aims to conduct a comprehensive analysis of historical stock data for Nepal top 30 Stock. Using time series analysis techniques, the project seeks to gain insights into the trends, patterns, and potential future performance of Nabil's stock.
