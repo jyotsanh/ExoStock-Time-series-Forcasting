@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.sharesansar.com/company/gbime"
+url = "https://www.sharesansar.com/company/hbl"
 
 # Fetch HTML content from the URL
 response = requests.get(url)
@@ -21,6 +21,17 @@ if response.status_code == 200:
     Phone_Number = table_data[13].text.strip() 
     Email = table_data[15].text.strip()
     Address = table_data[17].text.strip()
-
+    data = {
+                'Symbol':Symbol.strip(),
+                'Name':Name.strip(),
+                'Sector':Sector.strip(),
+                'Listed_Share':Listed_Shares.strip(),
+                'Paid up': Paid_Up.strip(),
+                'Operation_date':Operation_Date.strip(),
+                'Phone_Number':Phone_Number.strip(),
+                'Email':Email.strip(),
+                'Address':Address.strip()
+            }
+    print(data)
 else:
     print("Failed to fetch HTML:", response.status_code)
